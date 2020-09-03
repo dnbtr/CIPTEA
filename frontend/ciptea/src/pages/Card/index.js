@@ -15,25 +15,18 @@ export default function Card(){
     const [usuarioRecepcionista, setUsuarioRecepcionista] = useState([]);
 
     const [dataFormatada, setDataFormatada] = useState([]);
-    const [dataCriacao, setDataCriacao] = useState([]);
     const  { carteiraId }  = useParams();
-
     
     useEffect(() => {
         async function carregarCarteira(){
             const token = localStorage.getItem('userToken');
             const response = await api.get(`/carteiras/${carteiraId}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
-            });
+            });        
             setCarteira(response.data);
             setUsuarioRecepcionista(response.data.usuarioRecepcionista);
-            setDataCriacao(response.data.created_at);
-            
-            handleDateFormat();
-        }
-
-        async function handleDateFormat(){
-            var str = dataCriacao.toString();
+            // Tratar data de criação para legibilidade do usuário
+            var str = response.data.created_at;
             var parts = str.slice().split(' ');            
             var dateCpnt = parts[0]+"T";
             var timeCpnt = parts[1];
@@ -43,20 +36,21 @@ export default function Card(){
                 "'Dia' dd 'de' MMMM' de 'yyyy', às 'HH:mm'h'", { locale: ptBR }
             );
             setDataFormatada(formattedDate);
-        } 
+        }
+
         carregarCarteira();        
-    }, [carteiraId, dataCriacao]);     
+    }, [carteiraId]);     
             
 //   ____________________________________________________________________________________________________________
     return (
         <>
             <ul className="carteira">
                    <li key={carteira.id}>                       
-                       <header style={{ backgroundImage: `url(http://localhost:3333/files/${carteira.fotoRostoPath})`}} title="Foto de rosto, 3x4"></header>
+                       <header style={{ backgroundImage: `url(http://192.168.5.234:3333/files/${carteira.fotoRostoPath})`}} title="Foto de rosto, 3x4"></header>
                    </li>
                    <li>
                         <strong>{carteira.nomeTitular}</strong>
-                        <span>{carteira.logradouro}, {carteira.numeroResidencia}, {carteira.complemento}, {carteira.bairro}, {carteira.cidade} - {carteira.uf} - {carteira.cep}.</span>
+                        <span style={ carteira.cep ? { display: 'initial' } : { display : 'none' } }>{carteira.logradouro}, {carteira.numeroResidencia}, {carteira.complemento}, {carteira.bairro}, {carteira.cidade} - {carteira.uf} - {carteira.cep}.</span>
                         <br/>
                         <table>
                                 <th colSpan="2"><FiUserCheck/> Informações para contato:</th>
@@ -72,7 +66,7 @@ export default function Card(){
                         
                    </li>
                    <li></li>
-                        <button className="btn">
+                        <button className="btnPrinter">
                             <FiCornerLeftUp size={14}/> Imprimir <FiPrinter size={14}/>
                         </button>        
                    
@@ -96,7 +90,7 @@ export default function Card(){
                 </tr>
                 <tr>
                     <td>Data de Nascimento</td>
-                <td>{carteira.dataNascimento}</td>                
+                <td>{carteira.dataNascimento}</td>
                 </tr>
                 <tr>
                     <td>Nome do Responsável</td>

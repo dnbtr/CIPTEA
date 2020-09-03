@@ -8,20 +8,26 @@ export default function Login({ history }){
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-
-        const response = await api.post('/authenticate', {
-            email,
-            password
-        })
-        const { token } = response.data;
-
-        localStorage.setItem('userToken', token);
-
-        history.push('/')
-    }
+   
+        async function handleSubmit(e) {
+            try {
+                e.preventDefault();
+    
+                const response = await api.post('/authenticate', {
+                    email,
+                    password
+                })
+                const { token } = response.data;
+        
+                localStorage.setItem('userToken', token);
+        
+                history.push('/')
+            } catch(err){
+                console.log(err);
+            }
+            
+        }
+   
     return (
         <>
         {/* <MainHeader/> */}
