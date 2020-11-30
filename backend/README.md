@@ -7,3 +7,6 @@
 #### Passo a passo:
 - Deletar pasta backend antiga;
 - `$ yarn create adonis-ts-app backend` e criar uma API (e não Web application);
+- `$ yarn add @adonisjs/lucid@alpha` para instalar o LucidORM (@alpha é necessário para versão preview do Adonis);
+- `$ node ace invoke @adonisjs/lucid` para instalar DB (SQLite no caso);
+- `$ node ace make:migration [NOME-DA-TABELA]` para criar migrations;
