@@ -1,28 +1,9 @@
-# Adonis API application
+### Backend refatorado para o AdonisJS 5 Preview
 
-This is the boilerplate for creating an API server in AdonisJs, it comes pre-configured with.
+- De acordo com os devs, apesar de ser versão de preview, já está pronta para uso em produção;
+- Algumas features ainda não estão implementadas;
+- No Trello deles há um [roadmap](https://trello.com/b/3klaHbfP) mostrando o progresso da implementação das features;
 
-1. Bodyparser
-2. Authentication
-3. CORS
-4. Lucid ORM
-5. Migrations and seeds
-
-## Setup
-
-Use the adonis command to install the blueprint
-
-```bash
-adonis new yardstick --api-only
-```
-
-or manually clone the repo and then run `npm install`.
-
-
-### Migrations
-
-Run the following command to run startup migrations.
-
-```js
-adonis migration:run
-```
+#### Passo a passo:
+- Deletar pasta backend antiga;
+- `$ yarn create adonis-ts-app backend` e criar uma API (e não Web application);
