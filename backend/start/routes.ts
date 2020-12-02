@@ -23,3 +23,24 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+
+/* 
+/* @type {typeof import('@adonisjs/framework/src/Route/Manager')} 
+const Route = use('Route');
+
+Route.get('/files/:file', 'FileController.show');
+Route.post('/register', 'AuthController.register');
+
+Route.post('/authenticate', 'AuthController.authenticate').validator('Auth');
+Route.post('/forgot', 'ForgotPasswordController.store').validator('Forgot');
+Route.post('/reset', 'ResetPasswordController.store').validator('Reset');
+
+Route.get('/app', 'AppController.index').middleware(['auth']);
+
+// Cadastro de carteira
+Route.group(() => {
+  Route.resource('carteiras', 'CarteiraPteaController')
+    .apiOnly()
+    .except('update');
+}).middleware('auth');
+ */
