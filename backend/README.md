@@ -34,10 +34,11 @@
 #### Middlewares
 - Middlewares globais são registrados no `start/kernel.ts` dentro do objeto `Server.middleware.register`
 - Logger no momento usa console.log. Substituir pelo [debug](https://www.npmjs.com/package/debug)??
-  - Problema encontrado - ao chamar `request.header()`, há uma exception não tratada (ver se existe Issue aberta)
+  - Problema encontrado - ao chamar `request.header()`, há uma exception não tratada **(ver se existe issue aberta)**
 
 #### Login
 - Baixar e invocar pacote de autenticação `$ yarn add @adonisjs/auth@alpha` e `$ node ace invoke @adonisjs/auth`
+- Adicionado pacote [bcryptjs](https://www.npmjs.com/package/bcryptjs) para gerar hash da senha
 
 
 [Logger](https://preview.adonisjs.com/guides/logger)
@@ -47,3 +48,4 @@
 
 #### Outros
 - Adicionar `quote_type = single` no .editorconfig para usar apenas aspas simples no Prettier
+- Ao tentar usar o Hash.hash e o Hash.make no Model do User conforme [guia](https://preview.adonisjs.com/guides/models/hooks), deu erro de pacote não encontrado (phc-argon2) **(ver se existe issue aberta)**

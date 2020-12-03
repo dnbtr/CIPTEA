@@ -7,15 +7,18 @@ One should be able to see all the registered routes, controllers and middleware 
 and then branch out from there to work on individual pieces.
 */
 
-import Route from "@ioc:Adonis/Core/Route";
+import Route from '@ioc:Adonis/Core/Route';
 // import { schema } from "@ioc:Adonis/Core/Validator";
 
 Route.get('/logger_example', async ({ logger }) => {
-  logger.info('An info message')
-  return 'handled (see console for logs)'
-})
+  logger.info('An info message');
+  return 'handled (see console for logs)';
+});
 
-Route.post("/login", 'LoginController.createUser');
+Route.post('/create_user', 'LoginController.UserCreate');
+Route.post('/login', 'LoginController.UserLogin');
+
+Route.get('/all_users', 'LoginController.UserReturnAll');
 
 // Route.get("/files/:file", "FileController.show");
 // Route.post("/register", "AuthController.register");
@@ -31,7 +34,6 @@ Route.post("/login", 'LoginController.createUser');
 //     }),
 //   });
 // });
-
 
 // Rotas antigas - refatorar
 /* Route.post("/forgot", "ForgotPasswordController.store").validator(
