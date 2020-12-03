@@ -11,11 +11,11 @@ export default class AppProvider {
   }
 
   public async boot () {
-    // IoC container is ready
+    console.log('boot event (AppProvider.ts)')
   }
-
+  
   public async ready () {
-    // App is ready
+    console.log('ready event (AppProvider.ts)')
   }
 
   public async shutdown () {

@@ -1,46 +1,53 @@
-/*
-|--------------------------------------------------------------------------
-| Routes
-|--------------------------------------------------------------------------
-|
-| This file is dedicated for defining HTTP routes. A single file is enough
-| for majority of projects, however you can define routes in different
-| files and just make sure to import them inside this file. For example
-|
-| Define routes in following two files
-| ├── start/routes/cart.ts
-| ├── start/routes/customer.ts
-|
-| and then import them inside `start/routes/index.ts` as follows
-|
-| import './cart'
-| import './customer'
-|
+/* 
+Notas importantes - 
+
+Fonte - https://preview.adonisjs.com/guides/http/controllers
+The AdonisJS has a simple rule to treat the routes file as the source of truth.
+One should be able to see all the registered routes, controllers and middleware attached to them at a single place
+and then branch out from there to work on individual pieces.
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import Route from "@ioc:Adonis/Core/Route";
+// import { schema } from "@ioc:Adonis/Core/Validator";
 
-Route.get('/', async () => {
-  return { hello: 'world' }
+Route.get('/logger_example', async ({ logger }) => {
+  logger.info('An info message')
+  return 'handled (see console for logs)'
 })
 
-/* 
-/* @type {typeof import('@adonisjs/framework/src/Route/Manager')} 
-const Route = use('Route');
+Route.post("/login", 'LoginController.createUser');
 
-Route.get('/files/:file', 'FileController.show');
-Route.post('/register', 'AuthController.register');
+// Route.get("/files/:file", "FileController.show");
+// Route.post("/register", "AuthController.register");
 
-Route.post('/authenticate', 'AuthController.authenticate').validator('Auth');
-Route.post('/forgot', 'ForgotPasswordController.store').validator('Forgot');
-Route.post('/reset', 'ResetPasswordController.store').validator('Reset');
+// Route.post('/authenticate', 'AuthController.authenticate')./validator('AuthValidator');
 
-Route.get('/app', 'AppController.index').middleware(['auth']);
+// Rotas terão este formato? Não há guia para criação de validators separados
+// Pesquisar mais este ponto
+// Route.post("/authenticate", async ({ request }) => {
+//   const validated = await request.validate({
+//     schema: schema.create({
+//       marks: schema.number(),
+//     }),
+//   });
+// });
+
+
+// Rotas antigas - refatorar
+/* Route.post("/forgot", "ForgotPasswordController.store").validator(
+  "ForgotValidator"
+);
+
+Route.post("/reset", "ResetPasswordController.store").validator(
+  "ResetValidator"
+);
+ */
+// Route.get("/app", "AppController.index").middleware(["auth"]);
 
 // Cadastro de carteira
-Route.group(() => {
-  Route.resource('carteiras', 'CarteiraPteaController')
-    .apiOnly()
-    .except('update');
-}).middleware('auth');
- */
+// Excluir rotas update
+// Route.group(() => {
+//   Route.resource("carteiras", "CarteiraPteaController")
+//     .apiOnly()
+//     .except("update");
+// }).middleware("auth");

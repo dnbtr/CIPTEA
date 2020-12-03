@@ -10,6 +10,7 @@
 */
 
 import Server from '@ioc:Adonis/Core/Server'
+import { logger } from 'Config/app'
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ import Server from '@ioc:Adonis/Core/Server'
 |
 */
 Server.middleware.register([
+  'App/Middleware/Log',
   'Adonis/Core/BodyParserMiddleware',
 ])
 
