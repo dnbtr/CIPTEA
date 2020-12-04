@@ -1,29 +1,25 @@
-import { DateTime } from 'luxon'
-import Hash from '@ioc:Adonis/Core/Hash'
-import {
-  column,
-  beforeSave,
-  BaseModel,
-} from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from 'luxon';
+import bcrypt from 'bcryptjs';
+import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm';
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: number;
 
   @column()
-  public username: string
+  public username: string;
 
   @column()
-  public email: string
+  public email: string;
 
-  // Qual a função do serializeAs null?
-  @column({ serializeAs: null })
-  public password: string
+  // serializeAs = null serve para não trazer o campo
+  @column()
+  public password: string;
 
   // Criado automaticamente pelo node ace
   @column()
-  public rememberMeToken?: string
-  
+  public rememberMeToken?: string;
+
   @column()
   public nomeCompleto: string;
 
@@ -31,15 +27,15 @@ export default class User extends BaseModel {
   public matricula: number;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public updatedAt: DateTime;
 
   @beforeSave()
-  public static async hashPassword (user: User) {
+  public static async hashPassword(user: User) {
     if (user.$dirty.password) {
-      user.password = await Hash.make(user.password)
+      user.password = await bcrypt.hash(user.password, 8);
     }
   }
 }

@@ -41,6 +41,8 @@
 - Baixar e invocar pacote de autenticação `$ yarn add @adonisjs/auth@alpha` e `$ node ace invoke @adonisjs/auth`
 - Por padrão o `config/auth.ts` usa Model <Users> para autenticação. A migration de User **deve** conter campos `password` e `remember_me_token` (caso queira usar tokens de sessão);
 - Adicionado pacote [bcryptjs](https://www.npmjs.com/package/bcryptjs) para gerar hash da senha
+- Instalar o session - `$ yarn install @adonisjs/session@alpha`, fazer invoke `$ node ace invoke @adonisjs/session` e seguir instruções
+- `config/session.ts` permite configurar parâmetros da sessão
 
 
 [Logger](https://preview.adonisjs.com/guides/logger)

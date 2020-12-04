@@ -7,18 +7,18 @@ export default class AppProvider {
   }
 
   public register () {
-    // Register your own bindings
+    console.log('register event (providers/AppProvider.ts)')
   }
 
   public async boot () {
-    console.log('boot event (AppProvider.ts)')
+    console.log('boot event (providers/AppProvider.ts)')
   }
   
   public async ready () {
-    console.log('ready event (AppProvider.ts)')
+    console.log('ready event (providers/AppProvider.ts)')
   }
 
   public async shutdown () {
-    // Cleanup, since app is going down
+    console.log('shutdown event (providers/AppProvider.ts)')
   }
 }

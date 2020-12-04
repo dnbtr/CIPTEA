@@ -3,14 +3,17 @@
   Middlewares globais são registrados em Server.middleware.register
 */
 
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Logger from '@ioc:Adonis/Core/Logger';
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
 export default class Log {
-  public async handle ({ request }: HttpContextContract, next: () => Promise<void>) {
-    
-    // Loga no console de onde veio e quais parâmetros o request tem.
-    Logger.info(`${request.method()} ${request.url()}, ${request.ip()}`);
-    await next()
+  public async handle(
+    { request, logger }: HttpContextContract,
+    next: () => Promise<void>
+  ) {
+
+    // Todas as requisições que forem recebidas terão esse log mínimo
+    logger.info(`${request.method()} ${request.url()}, ${request.ip()}`);
+
+    await next();
   }
 }
