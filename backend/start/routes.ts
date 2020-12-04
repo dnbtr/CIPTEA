@@ -15,7 +15,9 @@ Route.get('/logger_example', async ({ logger }) => {
   return 'handled (see console for logs)';
 });
 
-Route.post('/create_user', 'LoginController.UserCreate');
+Route.post('/rota_teste', 'LoginController.RotaTeste');
+
+Route.post('/create_user', 'LoginController.CreateUser');
 Route.post('/login', 'LoginController.UserLogin');
 
 Route.get('/all_users', 'LoginController.UserReturnAll');
